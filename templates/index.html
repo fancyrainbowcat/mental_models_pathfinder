@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Bootstrap Template</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/style.css")}}">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap-theme.min.css")}}">
+</head>
+<body >
+    <h1>Hello, world!</h1>
+    <select required id="team_number" onchange="changed_team_name()">
+            <option value=""
+            hidden
+            >Please Select</option>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+    </select>
+    <script src="{{ url_for('static', filename="js/jquery-3.3.1.min.js")}}"></script>
+    <script src="{{ url_for('static', filename="js/bootstrap.min.js")}}"></script>
+    <script language="JavaScript">
+    var n = 0;
+    var statements = new Array();
+        // Fill the array with data.
+        statements[0] = "Team members argue";
+        statements[1] = "Team members are cool";
+        statements[2] = "Go Team";
+    </script>
+    <div class="row">
+        <div class="column left">
+            <div id="current_statement">Test</div>
+        </div>
+        <div class="column middle">
+            <div class="wrap" id="lickert_box">
+                        <form action= ""  method="post" id="form1">
+                        </form>
+            <input type="button" id="submit" onclick="next_statement()" value="Next">  
+            <div id="finished"><h2>Finished :)</h2></div>
+
+            </div>         
+        </div>
+    </div>
+
+    <script>
+        var statements = ["Team members work well together","Team members often disagree with each other on issues faced by the team","Team members trust each other","Team members communicate openly with each other","Team members agree on decisions made in the team","Team members accept decisions made by the leader","Team mebers interact with one another outside official settings","Team members back each other up in carrying out team tasks","Team members are similar to each other (e.g. personality, temperament, and abilities","Team members are aware of other team members' abilities","Team members are aware of other team members' personal backgrounds (e.g. family background, hobbies and habits)","Team members know other team members' family members","Team members treat each other as friends","The team is highly effective","Team members communicate frequently with each other at formal occasions (e.g. team meetings","Team members communicate frequently with each other at informal occasions (e.g. in the hallways"];
+        var iterator = statements.length - 1;
+        var list = "";
+        var uuid = 0;
+        var team_id = 0;
+
+        function el(tid) {return document.getElementById(tid);}
+
+
+        function changed_team_name() 
+        {
+            team_id = document.getElementById("team_number").value;
+        }
+
+        function create_lickert(id) {
+            var lickert = document.createElement("span");
+            lickert.setAttribute('class',"answers");
+
+            var disagree = document.createElement("span");
+            disagree.innerHTML = "Strongly Disagree";
+
+            var agree = document.createElement("span");
+            agree.innerHTML = "Strongly Agree";
+
+            var statement = document.createElement("div");
+            statement.setAttribute('id', "statement_"+id);
+            statement.setAttribute('class', "statement_box");
+            statement.innerHTML = "";
+
+            var radios = new Array();
+            for(i = 0; i < 5; i++) {
+                radios[i] = document.createElement("input");
+                radios[i].setAttribute('type',"radio");
+                radios[i].setAttribute('name',id);
+                radios[i].setAttribute('value',i);
+            }
+
+            lickert.appendChild(disagree);
+            for(i = 0; i < 5; i++) {
+                lickert.appendChild(radios[i]);
+            }
+            lickert.appendChild(agree);
+            lickert.appendChild(statement);
+
+            return lickert;
+        }
+
+        function score(){
+            var ems = el("form1").elements;
+            var lickert_dict = [];
+        
+            for(var i=0, mx=ems.length;i<mx;i++){
+                if(ems[i].checked){
+                    dst = Number(ems[i].name.replace('q',''));
+                    lickert_dict.push({'name': ems[i].name,
+                                       'value': ems[i].value,
+                                       'src': iterator+1,
+                                       'dst': dst})
+                    ems[i].checked = false;
+                }		
+            }
+
+            $.ajax({
+                url: '/index',
+                data: JSON.stringify(lickert_dict),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+             
+        }      
+
+        function removeElement(id) {
+            var elem = document.getElementById(id);
+            if(elem != null) {
+                return elem.parentNode.removeChild(elem);
+            }
+        }
+        
+        function next_statement() {
+            if(iterator >= 0) {
+                score();
+                document.getElementById("current_statement").innerHTML = statements[iterator];
+                
+                document.getElementById("form1").innerHTML = "";
+
+                for (lickert_i = 0; lickert_i < iterator; lickert_i ++) { 
+                    var id = 'q'+lickert_i.toString();
+                    document.getElementById("form1").appendChild(create_lickert(id));
+                    document.getElementById("statement_"+id).innerHTML = statements[lickert_i];
+                }
+
+                iterator = iterator - 1;
+            }
+
+            if(iterator == 0) {
+                document.getElementById("submit").value = 'Submit';
+            }
+
+            if(iterator == -1) {
+                document.getElementById("current_statement").innerHTML = '';
+                document.getElementById("finished").style.display = 'block';
+                document.getElementById("submit").style.display = 'none';
+
+                var team_name_json = [];
+                team_name_json.push({'team_id': team_id})
+
+                $.ajax({
+                    url: '/team',
+                    data: JSON.stringify(team_name_json),
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+
+                $.ajax({
+                    url: '/submit',
+                    data: '{"result": "success"}',
+                    type: 'POST',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
+
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
+
+        function init() {
+            // give user an unique ID
+            uuid = guid();
+            next_statement();
+
+            var uuid_json = [];
+            uuid_json.push({'uuid': uuid})
+
+            $.ajax({
+                url: '/index',
+                data: JSON.stringify(uuid_json),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+
+        }
+
+        if(document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            //The DOMContentLoaded event has already fired. Just run the code.
+            init();
+        }
+        
+    </script>
+</body>
+</html>
