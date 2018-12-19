@@ -6,8 +6,8 @@ The mental models pathfinder aims to analyze the mental models of dynamic and ag
 
 # Get updates
 
-`git pull --rebase` checks for updates of current branch
-`git pull --rebase <branch>` checks for updates of <branch>
+`git fetch && git pull --rebase` checks for updates of current branch
+`git fetch && git pull --rebase <branch>` checks for updates of <branch>
 
 # Add changes
 
