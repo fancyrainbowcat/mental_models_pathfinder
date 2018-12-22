@@ -112,6 +112,8 @@ def finished():
 @app.route('/generate')
 def generate():
     user_inputs = load_file_list('./try', [''])
+    if('.DS_Store' in user_inputs):
+        user_inputs.remove('.DS_Store')
     print('Generating graphs for ', file=sys.stderr)
     print(user_inputs, file=sys.stderr)
 
