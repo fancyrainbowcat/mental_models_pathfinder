@@ -8,6 +8,8 @@ from __future__ import print_function
 ###############################
 
 try:
+    import matplotlib
+    matplotlib.use('Agg')
     import matplotlib.pyplot as plt
 except:
     raise
@@ -79,9 +81,9 @@ def save_graph_png(file, graph):
 
     plt.axis('off')
     # save as png
-    if not os.path.exists('./try'):
-        os.makedirs('./try')
-    file = './try/'+file
+    if not os.path.exists('./graphs'):
+        os.makedirs('./graphs')
+    file = './graphs/'+file
     plt.savefig(file)
     plt.clf()
 
@@ -89,9 +91,9 @@ def save_graph_png(file, graph):
 
 
 def save_graph_json(file, graph):
-    if not os.path.exists('./try'):
-        os.makedirs('./try')
-    file = './try/'+file
+    if not os.path.exists('./graphs'):
+        os.makedirs('./graphs')
+    file = './graphs/'+file
     with open(file, 'w') as outfile:
         json.dump(nx.node_link_data(graph), outfile)
 
