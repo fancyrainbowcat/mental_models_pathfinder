@@ -43,12 +43,12 @@ def save_to_uuid_dict(request):
 def create_graphs(user_dict):
     print(json.dumps(user_dict), file=sys.stderr)
     # Create reduced graph dummy
-    G=generate_graph_json(user_dict)
-    S=reduce_graph(G)
+    G = generate_graph_json(user_dict)
+    S = reduce_graph(G)
 
     # Export graphs
-    team_id=[x['team_id'] for x in user_dict if 'team_id' in x][0]
-    uuid=[x['uuid'] for x in user_dict if 'uuid' in x][-1]
+    team_id = [x['team_id'] for x in user_dict if 'team_id' in x][0]
+    uuid = [x['uuid'] for x in user_dict if 'uuid' in x][-1]
 
     save_graph_png(team_id+'_' + uuid+'weighted_graph_S.png', S)
     save_graph_png(team_id+'_' + uuid+'weighted_graph_G.png', G)
@@ -65,11 +65,11 @@ def index():
 
 @app.route('/index', methods=['POST'])
 def get_lickert():
-    uuid, data=save_to_uuid_dict(request)
+    uuid, data = save_to_uuid_dict(request)
 
     # send HTTP response
-    response=make_response(json.dumps(data))
-    response.status_code=200
+    response = make_response(json.dumps(data))
+    response.status_code = 200
     response.headers['Access-Control-Allow-Origin']
 
     return response
@@ -77,10 +77,10 @@ def get_lickert():
 
 @app.route('/team', methods=['POST'])
 def get_team_id():
-    uuid, data=save_to_uuid_dict(request)
+    uuid, data = save_to_uuid_dict(request)
 
-    response=make_response(json.dumps(data))
-    response.status_code=200
+    response = make_response(json.dumps(data))
+    response.status_code = 200
     response.headers['Access-Control-Allow-Origin']
 
     return response
@@ -89,13 +89,13 @@ def get_team_id():
 @app.route('/submit', methods=['POST'])
 def finished():
     print('REACHED SUBMIT :)', file=sys.stderr)
-    uuid, data=save_to_uuid_dict(request)
+    uuid, data = save_to_uuid_dict(request)
     print('REACHED SUBMIT :)2', file=sys.stderr)
 
     # if (data["result"] == "success"):
     # create_graphs(user_dict[uuid])
 
-    team_id=[x['team_id'] for x in user_dict[uuid] if 'team_id' in x][0]
+    team_id = [x['team_id'] for x in user_dict[uuid] if 'team_id' in x][-1]
 
     if not os.path.exists('./try'):
         os.makedirs('./try')
@@ -103,8 +103,8 @@ def finished():
     with open('./try/' + team_id+'_' + uuid, 'w') as outfile:
         json.dump(([{'uuid': uuid}] + user_dict[uuid]), outfile)
 
-    response=make_response(json.dumps(data))
-    response.status_code=200
+    response = make_response(json.dumps(data))
+    response.status_code = 200
     response.headers['Access-Control-Allow-Origin']
 
     return response
@@ -112,7 +112,7 @@ def finished():
 
 @app.route('/generate')
 def generate():
-    user_inputs=load_file_list('./try', [''])
+    user_inputs = load_file_list('./try', [''])
     if('.DS_Store' in user_inputs):
         user_inputs.remove('.DS_Store')
     print('Generating graphs for ', file=sys.stderr)
@@ -120,12 +120,12 @@ def generate():
 
     for input in user_inputs:
         with open('./try/' + input, 'r') as infile:
-            indata=json.load(infile)
+            indata = json.load(infile)
             print(indata, file=sys.stderr)
             create_graphs(indata)
 
-    response=make_response(json.dumps({"result": "result"}))
-    response.status_code=200
+    response = make_response(json.dumps({"result": "result"}))
+    response.status_code = 200
     response.headers['Access-Control-Allow-Origin']
 
     return response
