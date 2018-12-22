@@ -72,6 +72,7 @@ def save_graph_png(file, graph):
 
     plt.axis('off')
     # save as png
+    os.mkdir('./try');
     file = './try/'+file
     plt.savefig(file)
     plt.clf()
@@ -79,6 +80,7 @@ def save_graph_png(file, graph):
 # export graph to json
 
 def save_graph_json(file, graph):
+    os.mkdir('./try');
     file = './try/'+file
     with open(file, 'w') as outfile:
         json.dump(nx.node_link_data(graph), outfile)
