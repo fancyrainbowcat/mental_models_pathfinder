@@ -15,6 +15,7 @@ import networkx as nx
 from numpy import genfromtxt
 import json
 import sys
+import os
 
 ###############################
 ### ____ functions ____ ###
@@ -22,10 +23,13 @@ import sys
 
 # Load file
 
+
 def load_csv(file):
     return genfromtxt(file, delimiter=';')
 
 # Generate graph from input numpy csv matrix
+
+
 def generate_graph_csv(input_csv):
     row_length = len(input_csv)
     col_length = len(input_csv[0])
@@ -44,16 +48,19 @@ def generate_graph_csv(input_csv):
     return G
 
 # Generate graph from input numpy csv matrix
+
+
 def generate_graph_json(input_json):
     G = nx.Graph()
 
     # we skip the main diagonal as nodeX <-> nodeX distance = 0
     for object in input_json:
-        print(object, file  = sys.stderr)
+        print(object, file=sys.stderr)
         if('src' in object.keys()):
             G.add_edge(str(object['src']), str(object['dst']),
-                        weight=float(object['value']))
-            print('Adding edge ('+str(object['src'])+','+str(object['dst'])+') = ' +str(object['value']))
+                       weight=float(object['value']))
+            print('Adding edge ('+str(object['src'])+',' +
+                  str(object['dst'])+') = ' + str(object['value']))
     return G
 
 # Generates reduced graph out of full graph
@@ -72,23 +79,28 @@ def save_graph_png(file, graph):
 
     plt.axis('off')
     # save as png
-    os.mkdir('./try');
+    if not os.path.exists('./try'):
+        os.makedirs('./try')
     file = './try/'+file
     plt.savefig(file)
     plt.clf()
 
 # export graph to json
 
+
 def save_graph_json(file, graph):
-    os.mkdir('./try');
+    if not os.path.exists('./try'):
+        os.makedirs('./try')
     file = './try/'+file
     with open(file, 'w') as outfile:
         json.dump(nx.node_link_data(graph), outfile)
+
 
 def import_graph_json(file):
     with open(file, 'w') as infile:
         data = json.load(infile)
         return nx.node_link_graph(data)
+
 
 def reduce_graph(G):
     S = nx.Graph()
@@ -107,21 +119,23 @@ def reduce_graph(G):
                 if(not S.has_edge(str(prev), str(node))):
                     if(node != prev):
                         # add it
-                        S.add_edge(prev, node, weight=float(G[node][prev]['weight']))
-                        print(prev+' to '+node+' with weight ' + str(G[node][prev]['weight']))         
+                        S.add_edge(prev, node, weight=float(
+                            G[node][prev]['weight']))
+                        print(prev+' to '+node+' with weight ' +
+                              str(G[node][prev]['weight']))
                 prev = node
     return S
 
 
 # compute average matrix
 
-def compute_average (input_csv, input_csv2):
+def compute_average(input_csv, input_csv2):
     row_length = len(input_csv)
     col_length = len(input_csv[0])
     A = nx.Graph()
 
     # we skip the main diagonal as nodeX <-> nodeX distance = 0
-    for column_offset in range (1, col_length):
+    for column_offset in range(1, col_length):
         # step through upper right diagonals and add egdes with averaged weights
         for i in range(0, row_length-column_offset):
             G.add_edge(str(i+column_offset), str(i),
@@ -148,31 +162,3 @@ def generate_graph(input_csv):
             print('Adding edge ('+str(i+column_offset)+','+str(i)+') = ' +
                   str(input_csv[i][i+column_offset]))
     return G
-
-###############################
-### ____ main function ____ ###
-###############################
-
-# Load input matrix
-# csv = load_csv('try2.csv')
-# print(csv)
-
-# csv2 = load_csv('try2_2.csv')
-# print(csv2)
-# print csv2[4][7]
-
-# # Generate graph from input csv
-# G = generate_graph(csv)
-
-# # Create reduced graph dummy
-# S = reduce_graph(G, csv)
-
-# A = compute_average(csv, csv2)
-
-# # Export graphs
-# save_graph_png('weighted_graph_S.png', S)
-# save_graph_png('weighted_graph_G.png', G)
-
-# # Export jsons
-# save_graph_json('weighted_graph_S.json', S)
-# save_graph_json('weighted_graph_G.json', G) s

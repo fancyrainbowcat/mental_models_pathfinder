@@ -94,6 +94,8 @@
         function evaluate_likert(){
             var ems = document.getElementById("form1").elements;
             var likert_dict = [];
+
+            likert_dict.push({'uuid': user_id})
         
             for(var i=0, mx=ems.length;i<mx;i++){
                 if(ems[i].checked){
@@ -123,9 +125,14 @@
         }      
 
         function send_submit() {
+            var submit_dict = [];
+
+            submit_dict.push({"uuid": user_id})
+            submit_dict.push({"result": "success"})
+
             $.ajax({
                 url: '/submit',
-                data: '{"result": "success"}',
+                data: JSON.stringify(submit_dict),
                 type: 'POST',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -160,6 +167,7 @@
         function send_team()
         {
             var team_name_json = [];
+            team_name_json.push({'uuid': user_id})
             team_name_json.push({'team_id': team_id})
 
             $.ajax({
