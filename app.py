@@ -81,6 +81,10 @@ def create_graphs(user_dict):
 def index():
     return render_template('index.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 
 @app.route('/index', methods=['POST'])
 def get_lickert():
