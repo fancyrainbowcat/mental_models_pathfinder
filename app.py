@@ -16,11 +16,12 @@ user_dict = dict()
 
 class Log():
     def __init__(self, logfile):
+        self.logfile = logfile
         self.log = open(logfile, 'a')
         
     def write(self, s, uuid = ''):
         try:
-            self.log = open(logfile, 'a')
+            self.log = open(self.logfile, 'a')
         except IOError:
             print("log file already in use", file=sys.stderr)
         self.log.write(strftime("%Y_%m_%d_%H_%M_%S: "+uuid+': ', gmtime()));
