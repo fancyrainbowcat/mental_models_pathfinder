@@ -57,6 +57,10 @@ def save_to_uuid_dict(request):
 
     # print data input to console
     if(debug >= 2):
+        log.write('Add data', uuid)
+        log.write(json.dumps(data), uuid)
+
+    if(debug >= 2):
         log.write(json.dumps(user_dict), uuid)
 
     return uuid, data
@@ -93,6 +97,8 @@ def admin():
 
 @app.route('/index', methods=['POST'])
 def get_lickert():
+    if(debug >= 2):
+        log.write('Received data')
     uuid, data = save_to_uuid_dict(request)
 
     # send HTTP response
