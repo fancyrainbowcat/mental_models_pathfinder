@@ -169,15 +169,17 @@ def download():
                 z.write(os.path.join(root, file))
     data.seek(0)
 
+    filename = strftime('%Y_%m_%d_%H_%M_%S_', gmtime())+'user_data.zip'
+
     if(debug >= 1):
-        print('Download user_data.zip', file=sys.stderr)
-        log.write('Download user_data.zip', uuid)
+        print('Download '+filename, file=sys.stderr)
+        log.write('Download '+filename)
 
     return send_file(
         data,
         mimetype='application/zip',
         as_attachment=True,
-        attachment_filename='user_data.zip'
+        attachment_filename=filename
     )
 
 @app.route('/clear_data')
@@ -186,7 +188,7 @@ def clear():
 
     if(debug >= 1):
         print('ATTENTION!!! CLEARING ALL DATA!!!', file=sys.stderr)
-        log.write('ATTENTION!!! CLEARING ALL DATA!!!', uuid)
+        log.write('ATTENTION!!! CLEARING ALL DATA!!!')
 
     for root, dirs, files in os.walk(base_path):
             for file in files:
