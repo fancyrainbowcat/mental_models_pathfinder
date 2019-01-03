@@ -19,6 +19,10 @@ class Log():
         self.log = open(logfile, 'a')
         
     def write(self, s, uuid = ''):
+        try:
+            self.log = open(logfile, 'a')
+        except IOError:
+            print("log file already in use", file=sys.stderr)
         self.log.write(strftime("%Y_%m_%d_%H_%M_%S: "+uuid+': ', gmtime()));
         self.log.write(s+'\n');
         self.log.flush();
@@ -158,6 +162,20 @@ def generate():
     response.headers['Access-Control-Allow-Origin']
 
     return response
+
+@app.route('/get_log')
+def get_log():
+    log = open('./log.txt', 'r');
+
+    if(debug >= 1):
+        print('Download log', file=sys.stderr)
+
+    return send_file(
+        log,
+        mimetype='application/text',
+        as_attachment=True,
+        attachment_filename='log.txt'
+    )
 
 @app.route('/get_data')
 def download():

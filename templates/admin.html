@@ -7,11 +7,20 @@
     <title>Basic Bootstrap Template</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/style.css")
 
+
+
     }}">
   </head>
   <body>
-    <button onclick="location.href='./get_data'" type="button">Download</button>
-    <button onclick="location.href='./clear_data'" type="button">Clear</button>
+    <button onclick="location.href='./get_data'" type="button">
+      Download Data
+    </button>
+    <button onclick="location.href='./clear_data'" type="button">
+      Clear Data
+    </button>
+    <button onclick="location.href='./get_log'" type="button">
+      Download Log
+    </button>
     <button onclick="window.open('./')" type="button">Open Tool</button>
   </body>
 </html>
