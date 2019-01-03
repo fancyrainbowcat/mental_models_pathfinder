@@ -155,6 +155,33 @@ def generate():
 
     return response
 
+@app.route('/get_data')
+def download():
+    base_path = './user_data/'
+    data = io.BytesIO()
+    with zipfile.ZipFile(data, mode='w') as z:
+        for root, dirs, files in os.walk(base_path):
+            for file in files:
+                z.write(os.path.join(root, file))
+    data.seek(0)
+    return send_file(
+        data,
+        mimetype='application/zip',
+        as_attachment=True,
+        attachment_filename='user_data.zip'
+    )
+
+@app.route('/clear_data')
+def clear():
+    base_path = './user_data/'
+    for root, dirs, files in os.walk(base_path):
+            for file in files:
+                try:
+                    if os.path.isfile(os.path.join(root, file)):
+                        os.unlink(os.path.join(root, file))
+                except Exception as e:
+                    print(e)
+    return ('Cleared Data', 204)
 
 if __name__ == "__main__":
     app.run()
