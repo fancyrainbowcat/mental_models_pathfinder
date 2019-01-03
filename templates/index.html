@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basic Bootstrap Template</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/style.css")}}">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <!-- Optional Bootstrap theme -->
     <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap-theme.min.css")}}">
 </head>
 <body >
+    <div id="header">
+    <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+    </div>
     <h1>Measuring Team Mental Models</h1>
-    <h2>Please indicate for each pair of statements how related they are to each other for you on a scale from 1 - 5.</h2>
-    <p> <b>1</b> meaning the statements are highly <b>negatively</b> correlated, a high degree of one requires a low degree of the other (e.g. "The sun is shining" and "It's nighttime") <br> <b>5</b> meaning they are highly <b>positively</b> correlated, a high degree of one requires a high degree of the other (e.g. "The sun is shining" and "It's daytime")</p>
+    <h2>Please choose your team and indicate for each pair of statements how related they are to each other for you on a scale from <i>Highly negatively related</i> - <i>Highly positively related</i>.</h2>
+    <p> Highly <b>negatively</b> related means a high degree of one requires a low degree of the other (e.g. "The sun is shining" and "It's nighttime") <br> <b>Not related</b> at all (middle) means the statements have no connections with each other (e.g. "The sun is shining" and "Nutella contains chocolate") <br> Highly <b>positively</b> related means a high degree of one requires a high degree of the other (e.g. "The sun is shining" and "It's daytime")</p>
 
     <select required id="team_number" onchange="changed_team_name()">
             <option value=""
@@ -57,10 +61,10 @@
             likert.setAttribute('class',"answers");
 
             var disagree = document.createElement("span");
-            disagree.innerHTML = "Strongly Disagree";
+            disagree.innerHTML = "Highly negatively related";
 
             var agree = document.createElement("span");
-            agree.innerHTML = "Strongly Agree";
+            agree.innerHTML = "Highly positively related";
 
             var statement = document.createElement("div");
             statement.setAttribute('id', "statement_"+id);
