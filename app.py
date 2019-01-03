@@ -164,6 +164,11 @@ def download():
             for file in files:
                 z.write(os.path.join(root, file))
     data.seek(0)
+
+    if(debug >= 1):
+        print('Download user_data.zip', file=sys.stderr)
+        log.write('Download user_data.zip', uuid)
+
     return send_file(
         data,
         mimetype='application/zip',
@@ -174,6 +179,11 @@ def download():
 @app.route('/clear_data')
 def clear():
     base_path = './user_data/'
+
+    if(debug >= 1):
+        print('ATTENTION!!! CLEARING ALL DATA!!!', file=sys.stderr)
+        log.write('ATTENTION!!! CLEARING ALL DATA!!!', uuid)
+
     for root, dirs, files in os.walk(base_path):
             for file in files:
                 try:
