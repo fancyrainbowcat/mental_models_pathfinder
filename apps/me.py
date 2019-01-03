@@ -81,9 +81,9 @@ def save_graph_png(file, graph):
 
     plt.axis('off')
     # save as png
-    if not os.path.exists('./graphs'):
-        os.makedirs('./graphs')
-    file = './graphs/'+file
+    if not os.path.exists('./user_data/graphs'):
+        os.makedirs('./user_data/graphs')
+    file = './user_data/graphs/'+file
     plt.savefig(file)
     plt.clf()
 
@@ -91,9 +91,9 @@ def save_graph_png(file, graph):
 
 
 def save_graph_json(file, graph):
-    if not os.path.exists('./graphs'):
-        os.makedirs('./graphs')
-    file = './graphs/'+file
+    if not os.path.exists('./user_data/graphs'):
+        os.makedirs('./user_data/graphs')
+    file = './user_data/graphs/'+file
     with open(file, 'w') as outfile:
         json.dump(nx.node_link_data(graph), outfile)
 
