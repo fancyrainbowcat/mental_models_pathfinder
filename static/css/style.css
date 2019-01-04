@@ -66,12 +66,14 @@ form {
 }
 
 #current_statement {
-  display: flex;
+  position: fixed;
+  display: relative;
   font-size: 16px;
+  top: 50%;
+  width: 25%;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   vertical-align: middle;
-  margin-top: 50%;
   margin-left: 30px;
   margin-right: 30px;
   font-weight: bold;
