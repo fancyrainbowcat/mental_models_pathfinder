@@ -154,9 +154,9 @@ input score {
 
 .radio_group input[type="radio"] + label {
   cursor: pointer;
-  padding: 15px 15px;
-  border: 2px solid #ffffff;
-  background: #64b4f0;
+  padding: 10px 10px;
+  border: 2px solid #d3d3d3;
+  background: white;
   color: white;
   border-radius: 20px;
 }
@@ -178,7 +178,7 @@ input score {
 .radio_group {
   display: relative;
   float: left;
-  margin-left: 23px;
+  margin-left: 30px;
   margin-bottom: 20px;
 }
 
