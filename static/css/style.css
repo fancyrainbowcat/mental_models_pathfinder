@@ -17,20 +17,20 @@ body {
 }
 
 #logo_lmu {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   width: 160px;
   left: 100%;
   margin-left: -420px;
-  margin-top: -90px;
+  margin-top: -85px;
 }
 
 #logo_stanford {
-  position: fixed;
+  position: absolute;
   width: 200px;
   left: 100%;
   margin-left: -230px;
-  margin-top: -90px;
+  margin-top: -85px;
   z-index: 2;
 }
 
@@ -202,4 +202,5 @@ button[type="button"] {
   font-size: 16px;
   font-weight: bold;
   float: right;
+  margin-top: 20px;
 }
