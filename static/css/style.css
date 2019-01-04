@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #ececec;
 }
 
 #header {
@@ -70,7 +70,7 @@ form {
   display: relative;
   font-size: 16px;
   top: 50%;
-  width: 25%;
+  width: 20%;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   vertical-align: middle;
@@ -107,7 +107,7 @@ form {
 
 .statement_box {
   width: 750px;
-  margin-left: 100px;
+  margin-left: 40px;
   margin-top: 20px;
   font-size: 16px;
 }
@@ -155,16 +155,23 @@ input score {
 .radio_group input[type="radio"] + label {
   cursor: pointer;
   padding: 15px 15px;
-  border: 1px solid white;
+  border: 2px solid #ffffff;
   background: #64b4f0;
   color: white;
   border-radius: 20px;
 }
 
+.radio_group input[type="radio"]:hover + label {
+  /* style for the checked/selected state */
+  background: #f7fbff;
+  border: 2px solid #5fa6c7;
+  color: #64b4f0;
+}
+
 .radio_group input[type="radio"]:checked + label {
   /* style for the checked/selected state */
   background: white;
-  border: 1px solid #3494c0;
+  border: 2px solid #3494c0;
   color: #64b4f0;
 }
 
@@ -215,4 +222,10 @@ button[type="button"] {
   font-weight: bold;
   float: right;
   margin-top: 20px;
+}
+
+input[type="button"]:hover,
+button[type="button"]:hover {
+  background-color: white;
+  color: #64b4f0;
 }
