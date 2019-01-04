@@ -4,24 +4,38 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Basic Bootstrap Template</title>
+    <title>Mental Models Pathfinder - Admin</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/style.css")
+
+
 
     }}">
   </head>
   <body>
-    <button onclick="location.href='./get_data'" type="button">
-      Download Data
-    </button>
-    <button onclick="location.href='./clear_data'" type="button">
-      Clear Data
-    </button>
-    <button onclick="location.href='./get_log'" type="button">
-      Download Log
-    </button>
-    <button onclick="location.href='./generate'" type="button">
-      Generate Graphs
-    </button>
-    <button onclick="window.open('./')" type="button">Open Tool</button>
+    <img id="header" src="{{ url_for('static', filename="header.jpeg")}}">
+    <img
+      id="logo_lmu"
+      src="http://2014.igem.org/wiki/images/2/24/LMU14_LMU_logo_white.png"
+    />
+    <img
+      id="logo_stanford"
+      src="http://fallenleaffilms.com/wp-content/uploads/2016/12/Stanford-University-Logo.png"
+    />
+    <div id="admin_headline">Mental Models Pathfinder - Admin Console</div>
+    <div id="admin_headline">
+      <button onclick="location.href='./get_data'" type="button">
+        Download Data
+      </button>
+      <button onclick="location.href='./clear_data'" type="button">
+        Clear Data
+      </button>
+      <button onclick="location.href='./get_log'" type="button">
+        Download Log
+      </button>
+      <button onclick="location.href='./generate'" type="button">
+        Generate Graphs
+      </button>
+      <button onclick="window.open('./')" type="button">Open Tool</button>
+    </div>
   </body>
 </html>

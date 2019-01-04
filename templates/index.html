@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Basic Bootstrap Template</title>
+    <title>Mental Models Pathfinder</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css/style.css")}}">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
     <!-- Optional Bootstrap theme -->
@@ -64,36 +64,63 @@
             likert.setAttribute('class',"answers");
 
             var disagree = document.createElement("span");
+            disagree.setAttribute('id', "disagree");
             disagree.innerHTML = "Highly negatively related";
 
             var agree = document.createElement("span");
+            agree.setAttribute('id', "agree");
             agree.innerHTML = "Highly positively related";
+
+            var statement_wrapper = document.createElement("div");
+            statement_wrapper.setAttribute('id', "statement_"+id+'wrapper');
+            statement_wrapper.setAttribute('class', "statement_wrapper");
+            statement_wrapper.innerHTML = "";
 
             var statement = document.createElement("div");
             statement.setAttribute('id', "statement_"+id);
             statement.setAttribute('class', "statement_box");
             statement.innerHTML = "";
 
-            var newline = document.createElement("span");
-            newline.innerHTML = "<br> <br>";
+            var newline = document.createElement("br");
 
-            var radios = new Array();
+            var radio_groups = new Array();
+            var radio_buttons = new Array();
+            var radio_labels = new Array();
+
+            likert.appendChild(statement_wrapper);
+
             for(i = 0; i < 5; i++) {
-                radios[i] = document.createElement("input");
-                radios[i].required = true;
-                radios[i].setAttribute('type',"radio");
-                radios[i].setAttribute('name',id);
-                radios[i].setAttribute('value',i);
-                radios[i].setAttribute('id',id+'_'+i.toString());
+                radio_groups[i] = document.createElement("div");
+                radio_groups[i].setAttribute('id', 'group'+id+'_'+i.toString());
+                radio_groups[i].setAttribute('class', "radio_group");
+                radio_groups[i].innerHTML = "";
+
+                radio_buttons[i] = document.createElement("input");
+                radio_buttons[i].required = true;
+                radio_buttons[i].setAttribute('type',"radio");
+                radio_buttons[i].setAttribute('name',id);
+                radio_buttons[i].setAttribute('value',i);
+                radio_buttons[i].setAttribute('id',id+'_'+i.toString());
+
+                radio_labels[i] = document.createElement("label");
+                radio_labels[i].innerHTML = i.toString();
+                radio_labels[i].setAttribute('for',id+'_'+i.toString());
             }
 
-            likert.appendChild(disagree);
+            statement_wrapper.appendChild(newline);
+
             for(i = 0; i < 5; i++) {
-                likert.appendChild(radios[i]);
+                statement_wrapper.appendChild(radio_groups[i]);
+                radio_groups[i].appendChild(radio_buttons[i]);
+                radio_groups[i].appendChild(radio_labels[i]);
             }
-            likert.appendChild(agree);
-            likert.appendChild(statement);
+
+            statement_wrapper.appendChild(statement);
             likert.appendChild(newline);
+            likert.appendChild(disagree);
+            likert.appendChild(agree);
+            likert.appendChild(newline);
+            
 
             return likert;
         }
@@ -237,7 +264,7 @@
                 evaluate_likert();
                 
                 // clear previous likert scales
-                document.getElementById("current_statement").innerHTML = statements[iterator];
+                document.getElementById("current_statement").innerHTML = '"'+statements[iterator]+'"';
                 document.getElementById("form1").innerHTML = "";
 
                 // create new likert scales

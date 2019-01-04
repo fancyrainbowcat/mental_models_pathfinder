@@ -1,9 +1,15 @@
-html,body {padding:0;margin:0;}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
 .wrap {
-  font:14px Arial, san-serif;
+  font: 14px Arial, san-serif;
 }
 
-body {background-color: #FAFAFA;}
+body {
+  background-color: #fafafa;
+}
 
 #header {
   width: 100%;
@@ -27,7 +33,6 @@ body {background-color: #FAFAFA;}
   margin-top: -90px;
   z-index: 2;
 }
-
 
 h1 {
   margin-left: 10px;
@@ -61,16 +66,20 @@ form {
 }
 
 #current_statement {
-  display:flex;
-  font-size: 14px;
+  display: flex;
+  font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   vertical-align: middle;
+  margin-top: 50%;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-weight: bold;
 }
 
 .column {
-    float: left;
-    padding: 10px;
+  float: left;
+  padding: 10px;
 }
 
 .left {
@@ -82,31 +91,115 @@ form {
 }
 
 .right {
-    width: 5%;
+  width: 5%;
+}
+
+.statement_wrapper {
+  display: block;
+  height: 30px;
 }
 
 .statement_box {
-  width: 550px;
-  margin-left: 50px;
-  display: inline-block;
+  width: 750px;
+  margin-left: 400px;
+  font-size: 16px;
 }
 
 /* Clear floats after the columns */
 .row:after {
-    content: ""; 
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 input score {
-    padding: 100px 100px 100px;
+  padding: 100px 100px 100px;
+}
+
+#admin_headline {
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+#admin_buttons {
+  margin-top: 50px;
+  margin-left: 50px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }
 
 #finished {
-  position:absolute;
-  top:50%;
-  left:50%;
-  margin-top:150px; /* this is half the height of your div*/  
-  margin-left:-100px; /*this is half of width of your div*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 150px; /* this is half the height of your div*/
+  margin-left: -100px; /*this is half of width of your div*/
   display: none;
+}
+
+.radio_group input[type="radio"] {
+  opacity: 0;
+}
+
+.radio_group input[type="radio"] + label {
+  cursor: pointer;
+  padding: 4px 10px;
+  border: 1px solid white;
+  background: #64b4f0;
+  color: white;
+  border-radius: 3px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0);
+}
+
+.radio_group input[type="radio"]:checked + label {
+  /* style for the checked/selected state */
+  background: #3494c0;
+  border: 1px solid #000000;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.radio_group {
+  display: relative;
+  float: left;
+  margin-left: 20px;
+}
+
+.radio_group label {
+  display: inline-block;
+  text-align: center;
+  padding: 11px;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#agree {
+  font-family: Arial;
+  font-size: 10px;
+  margin-left: 170px;
+}
+
+#disagree {
+  margin-top: 50px;
+  font-family: Arial;
+  font-size: 10px;
+}
+
+input[type="button"],
+button[type="button"] {
+  background-color: #64b4f0;
+  border: none;
+  color: white;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
 }
