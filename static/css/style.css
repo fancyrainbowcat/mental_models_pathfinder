@@ -6,15 +6,28 @@ html,body {padding:0;margin:0;}
 body {background-color: #FAFAFA;}
 
 #header {
-  width: 5000px;
-  height: 100px;
+  width: 100%;
+  z-index: 0;
 }
- 
-#header img{
-	position: absolute;
-	clip: rect(0px 5000px 100px 0px);
-	overflow: hidden;
+
+#logo_lmu {
+  position: fixed;
+  z-index: 1;
+  width: 160px;
+  left: 100%;
+  margin-left: -420px;
+  margin-top: -90px;
 }
+
+#logo_stanford {
+  position: fixed;
+  width: 200px;
+  left: 100%;
+  margin-left: -230px;
+  margin-top: -90px;
+  z-index: 2;
+}
+
 
 h1 {
   margin-left: 10px;
@@ -25,6 +38,7 @@ h1 {
 h2 {
   margin-left: 10px;
   font-size: 18px;
+  margin-right: 10px;
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -38,6 +52,10 @@ br {
   line-height: 150%;
 }
 
+#team_sentence {
+  font-size: 17px;
+}
+
 form {
   display: inline-block;
 }
@@ -48,10 +66,6 @@ form {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
   vertical-align: middle;
-}
-
-#team_number{
-  margin-left: 10px;
 }
 
 .column {
