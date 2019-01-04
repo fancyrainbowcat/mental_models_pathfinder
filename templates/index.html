@@ -67,6 +67,10 @@
             disagree.setAttribute('id', "disagree");
             disagree.innerHTML = "Highly negatively related";
 
+            var unrelated = document.createElement("span");
+            unrelated.setAttribute('id', "unrelated");
+            unrelated.innerHTML = "Not related";
+
             var agree = document.createElement("span");
             agree.setAttribute('id', "agree");
             agree.innerHTML = "Highly positively related";
@@ -82,6 +86,7 @@
             statement.innerHTML = "";
 
             var newline = document.createElement("br");
+            var hline = document.createElement("hr");
 
             var radio_groups = new Array();
             var radio_buttons = new Array();
@@ -103,7 +108,7 @@
                 radio_buttons[i].setAttribute('id',id+'_'+i.toString());
 
                 radio_labels[i] = document.createElement("label");
-                radio_labels[i].innerHTML = i.toString();
+                //radio_labels[i].innerHTML = i.toString();
                 radio_labels[i].setAttribute('for',id+'_'+i.toString());
             }
 
@@ -118,8 +123,10 @@
             statement_wrapper.appendChild(statement);
             likert.appendChild(newline);
             likert.appendChild(disagree);
+            likert.appendChild(unrelated);
             likert.appendChild(agree);
             likert.appendChild(newline);
+            likert.appendChild(hline);
             
 
             return likert;

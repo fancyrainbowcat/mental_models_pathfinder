@@ -96,12 +96,17 @@ form {
 
 .statement_wrapper {
   display: block;
-  height: 30px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
 }
 
 .statement_box {
   width: 750px;
-  margin-left: 400px;
+  margin-left: 100px;
+  margin-top: 20px;
   font-size: 16px;
 }
 
@@ -147,11 +152,11 @@ input score {
 
 .radio_group input[type="radio"] + label {
   cursor: pointer;
-  padding: 4px 10px;
+  padding: 15px 15px;
   border: 1px solid white;
   background: #64b4f0;
   color: white;
-  border-radius: 3px;
+  border-radius: 20px;
 }
 
 .radio_group input[type="radio"]:checked + label {
@@ -164,29 +169,36 @@ input score {
 .radio_group {
   display: relative;
   float: left;
-  margin-left: 20px;
+  margin-left: 23px;
+  margin-bottom: 20px;
 }
 
 .radio_group label {
   display: inline-block;
   text-align: center;
-  padding: 11px;
+  padding: 0px;
   font-family: Arial;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
+}
+
+#disagree {
+  margin-top: 80px;
+  font-family: Arial;
+  font-size: 10px;
+}
+
+#unrelated {
+  font-family: Arial;
+  font-size: 10px;
+  margin-left: 60px;
 }
 
 #agree {
   font-family: Arial;
   font-size: 10px;
-  margin-left: 170px;
-}
-
-#disagree {
-  margin-top: 50px;
-  font-family: Arial;
-  font-size: 10px;
+  margin-left: 60px;
 }
 
 input[type="button"],
