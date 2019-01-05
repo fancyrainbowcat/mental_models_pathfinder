@@ -48,7 +48,7 @@
     </div>
 
     <script>
-        var statements = ["Team members work well together","Team members often disagree with each other on issues faced by the team","Team members trust each other","Team members communicate openly with each other","Team members agree on decisions made in the team","Team members accept decisions made by the leader","Team mebers interact with one another outside official settings","Team members back each other up in carrying out team tasks","Team members are similar to each other (e.g. personality, temperament, and abilities","Team members are aware of other team members' abilities","Team members are aware of other team members' personal backgrounds (e.g. family background, hobbies and habits)","Team members know other team members' family members","Team members treat each other as friends","The team is highly effective","Team members communicate frequently with each other at formal occasions (e.g. team meetings","Team members communicate frequently with each other at informal occasions (e.g. in the hallways)"];
+        var statements = ["Team members work well together","Team members often disagree with each other on issues faced by the team","Team members trust each other","Team members communicate openly with each other", "Team members agree on decisions made in the team","Team members accept decisions made by the leader","Team members interact with one another outside official settings","Team members back each other up in carrying out team tasks","Team members are similar to each other (e.g. personality, temperament, and abilities","Team members are aware of other team members' abilities","Team members are aware of other team members' personal backgrounds (e.g. family background, hobbies and habits)","Team members know other team members' family members","Team members treat each other as friends","The team is highly effective","Team members communicate frequently with each other at formal occasions (e.g. team meetings","Team members communicate frequently with each other at informal occasions (e.g. in the hallways)"];
         var iterator = statements.length - 1;
         var list = "";
         var uuid = 0;
@@ -94,7 +94,7 @@
 
             likert.appendChild(statement_wrapper);
 
-            for(i = 0; i < 5; i++) {
+            for(i = 0; i < 7; i++) {
                 radio_groups[i] = document.createElement("div");
                 radio_groups[i].setAttribute('id', 'group'+id+'_'+i.toString());
                 radio_groups[i].setAttribute('class', "radio_group");
@@ -114,7 +114,7 @@
 
             statement_wrapper.appendChild(newline);
 
-            for(i = 0; i < 5; i++) {
+            for(i = 0; i < 7; i++) {
                 statement_wrapper.appendChild(radio_groups[i]);
                 radio_groups[i].appendChild(radio_buttons[i]);
                 radio_groups[i].appendChild(radio_labels[i]);
@@ -263,6 +263,26 @@
 
             next_statement();
         }
+
+            //See https://github.com/coolaj86/knuth-shuffle
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
         
         function next_statement() {
             // evaluate results and move on to next statement
@@ -273,11 +293,23 @@
                 // clear previous likert scales
                 document.getElementById("current_statement").innerHTML = '"'+statements[iterator]+'"';
                 document.getElementById("form1").innerHTML = "";
-
+                
+                likert_scales = new Array();
                 // create new likert scales
                 for (likert_i = 0; likert_i < iterator; likert_i ++) { 
                     var id = 'q'+likert_i.toString();
-                    document.getElementById("form1").appendChild(create_likert(id));
+                    likert_scales[likert_i] = create_likert(id);
+                }
+                
+                order = [...Array(iterator).keys()];
+                order = shuffle(order);
+                for (likert_i = 0; likert_i < iterator; likert_i ++) { 
+                    document.getElementById("form1").appendChild(likert_scales[order[likert_i]]);
+                }
+                
+                for (likert_i = 0; likert_i < iterator; likert_i ++) { 
+                    var id = 'q'+likert_i.toString();
+                    //statement_x is some likert scale x's statement_box
                     document.getElementById("statement_"+id).innerHTML = statements[likert_i];
                 }
 
