@@ -111,7 +111,7 @@ form {
 }
 
 .statement_box {
-  width: 625px;
+  width: 600px;
   margin-left: 50px;
   margin-top: 20px;
   font-size: 14px;
@@ -197,36 +197,40 @@ input score {
   cursor: pointer;
 }
 
-input #q0_0 {
-  border: 2px solid #ec1c1c;
+.radio_group [id^="q"][id$="_0"] + label {
+  border: 2px solid #ec3d3d;
 }
 
-.radio_group [id^='q'][id$='_0'] {
-  border: 2px solid #ec1c1c;
+.radio_group [id^="q"][id$="_1"] + label {
+  border: 2px solid #da5151;
 }
 
-.radio_group [id^='q'][id$='_1'] {
+.radio_group [id^="q"][id$="_2"] + label {
   border: 2px solid #f88e8e;
 }
 
-.radio_group [id^='q'][id$='_2'] {
+.radio_group [id^="q"][id$="_3"] + label {
   border: 2px solid #fac8c8;
 }
 
-.radio_group [id^='q'][id$='_3'] {
+.radio_group [id^="q"][id$="_4"] + label {
   border: 2px solid #cacaca;
 }
 
-.radio_group [id^='q'][id$='_4'] {
+.radio_group [id^="q"][id$="_5"] + label {
   border: 2px solid #e1ffd5;
 }
 
-.radio_group [id^='q'][id$='_5'] {
+.radio_group [id^="q"][id$="_6"] + label {
   border: 2px solid #a4ff80;
 }
 
-.radio_group [id^='q'][id$='_6'] {
-  border: 2px solid #5eff2d;
+.radio_group [id^="q"][id$="_7"] + label {
+  border: 2px solid #84f761;
+}
+
+.radio_group [id^="q"][id$="_8"] + label {
+  border: 2px solid #71f847;
 }
 
 #disagree {
@@ -243,7 +247,7 @@ input #q0_0 {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 15px;
+  margin-left: 11px;
   width: 100px;
 }
 
@@ -252,7 +256,7 @@ input #q0_0 {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 15px;
+  margin-left: 11px;
   width: 100px;
 }
 
@@ -261,7 +265,7 @@ input #q0_0 {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 15px;
+  margin-left: 11px;
   width: 100px;
 }
 
@@ -270,7 +274,7 @@ input #q0_0 {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 15px;
+  margin-left: 11px;
   width: 100px;
 }
 
