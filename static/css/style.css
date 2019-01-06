@@ -163,7 +163,7 @@ input score {
   background: rgb(255, 255, 255);
   color: rgb(155, 155, 155);
   border-radius: 20px;
-  border: 2px solid #d4d4d4;
+  border: 2px solid #ffffff;
 }
 
 .radio_group input[type="radio"]:hover + label {
@@ -198,39 +198,39 @@ input score {
 }
 
 .radio_group [id^="q"][id$="_0"] + label {
-  border: 2px solid #ec3d3d;
+  background: #ffaaaa;
 }
 
 .radio_group [id^="q"][id$="_1"] + label {
-  border: 2px solid #da5151;
+  background: #ffc3c3;
 }
 
 .radio_group [id^="q"][id$="_2"] + label {
-  border: 2px solid #f88e8e;
+  background: #ffd7d7;
 }
 
 .radio_group [id^="q"][id$="_3"] + label {
-  border: 2px solid #fac8c8;
+  background: #ffdfdf;
 }
 
 .radio_group [id^="q"][id$="_4"] + label {
-  border: 2px solid #cacaca;
+  background: #cacaca;
 }
 
 .radio_group [id^="q"][id$="_5"] + label {
-  border: 2px solid #e1ffd5;
+  background: #eeffe6;
 }
 
 .radio_group [id^="q"][id$="_6"] + label {
-  border: 2px solid #a4ff80;
+  background: #ddffd0;
 }
 
 .radio_group [id^="q"][id$="_7"] + label {
-  border: 2px solid #84f761;
+  background: #cfffc0;
 }
 
 .radio_group [id^="q"][id$="_8"] + label {
-  border: 2px solid #71f847;
+  background: #beffab;
 }
 
 #disagree {
