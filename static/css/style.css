@@ -160,10 +160,10 @@ input score {
 .radio_group input[type="radio"] + label {
   cursor: pointer;
   padding: 8px 8px;
-  /**/
-  background: white;
-  color: white;
+  background: rgb(255, 255, 255);
+  color: rgb(155, 155, 155);
   border-radius: 20px;
+  border: 2px solid #d4d4d4;
 }
 
 .radio_group input[type="radio"]:hover + label {
@@ -238,13 +238,13 @@ input #q0_0 {
 #unrelated {
   font-family: Arial;
   font-size: 10px;
-  margin-left: 93px;
+  margin-left: 90px;
 }
 
 #agree {
   font-family: Arial;
   font-size: 10px;
-  margin-left: 93px;
+  margin-left: 90px;
 }
 
 input[type="button"],
