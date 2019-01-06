@@ -160,7 +160,7 @@ input score {
 .radio_group input[type="radio"] + label {
   cursor: pointer;
   padding: 8px 8px;
-  border: 2px solid #d3d3d3;
+  /**/
   background: white;
   color: white;
   border-radius: 20px;
@@ -169,21 +169,21 @@ input score {
 .radio_group input[type="radio"]:hover + label {
   /* style for the checked/selected state */
   background: #f7fbff;
-  border: 2px solid #5fa6c7;
-  color: #64b4f0;
+  border: 2px solid #b9b9b9;
+  color: #e2e2e2;
 }
 
 .radio_group input[type="radio"]:checked + label {
   /* style for the checked/selected state */
-  background: white;
-  border: 2px solid #3494c0;
-  color: #64b4f0;
+  background: rgb(199, 199, 199);
+  border: 2px solid #7e7e7e;
+  color: #ffffff;
 }
 
 .radio_group {
   display: relative;
   float: left;
-  margin-left: 35px;
+  margin-left: 25px;
   margin-bottom: 20px;
 }
 
@@ -197,6 +197,38 @@ input score {
   cursor: pointer;
 }
 
+input #q0_0 {
+  border: 2px solid #ec1c1c;
+}
+
+.radio_group [id^='q'][id$='_0'] {
+  border: 2px solid #ec1c1c;
+}
+
+.radio_group [id^='q'][id$='_1'] {
+  border: 2px solid #f88e8e;
+}
+
+.radio_group [id^='q'][id$='_2'] {
+  border: 2px solid #fac8c8;
+}
+
+.radio_group [id^='q'][id$='_3'] {
+  border: 2px solid #cacaca;
+}
+
+.radio_group [id^='q'][id$='_4'] {
+  border: 2px solid #e1ffd5;
+}
+
+.radio_group [id^='q'][id$='_5'] {
+  border: 2px solid #a4ff80;
+}
+
+.radio_group [id^='q'][id$='_6'] {
+  border: 2px solid #5eff2d;
+}
+
 #disagree {
   margin-top: 60px;
   font-family: Arial;
@@ -206,13 +238,13 @@ input score {
 #unrelated {
   font-family: Arial;
   font-size: 10px;
-  margin-left: 63px;
+  margin-left: 93px;
 }
 
 #agree {
   font-family: Arial;
   font-size: 10px;
-  margin-left: 63px;
+  margin-left: 93px;
 }
 
 input[type="button"],
