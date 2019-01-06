@@ -14,24 +14,27 @@ app = Flask(__name__)
 
 user_dict = dict()
 
+
 class Log():
     def __init__(self, logfile):
         self.logfile = logfile
         self.log = open(logfile, 'a')
-        
-    def write(self, s, uuid = ''):
+
+    def write(self, s, uuid=''):
         try:
             self.log = open(self.logfile, 'a')
         except IOError:
             print("log file already in use", file=sys.stderr)
-        self.log.write(strftime("%Y_%m_%d_%H_%M_%S: "+uuid+': ', gmtime()));
-        self.log.write(s+'\n');
-        self.log.flush();
+        self.log.write(strftime("%Y_%m_%d_%H_%M_%S: "+uuid+': ', gmtime()))
+        self.log.write(s+'\n')
+        self.log.flush()
 
-log = Log('./log.txt');
+
+log = Log('./log.txt')
 
 # Load list of files matching filters
-debug = 2 # 0 - no debug console, 1 limited debug console, 2 full text log
+debug = 2  # 0 - no debug console, 1 limited debug console, 2 full text log
+
 
 def load_file_list(directory, filters):
     list = [f for f in sorted(os.listdir(directory)) if os.path.isfile(
@@ -90,6 +93,7 @@ def create_graphs(user_dict):
 def index():
     return render_template('index.html')
 
+
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
@@ -120,6 +124,20 @@ def get_team_id():
     return response
 
 
+@app.route('/performance', methods=['POST'])
+def get_performance():
+    uuid, data = save_to_uuid_dict(request)
+
+    if(debug >= 1):
+        print('Received performance data '+json.dumps(data), file=sys.stderr)
+
+    response = make_response(json.dumps(data))
+    response.status_code = 200
+    response.headers['Access-Control-Allow-Origin']
+
+    return response
+
+
 @app.route('/submit', methods=['POST'])
 def finished():
     uuid, data = save_to_uuid_dict(request)
@@ -139,7 +157,7 @@ def finished():
     if(debug >= 1):
         print('Save json file ' + team_id+'_' + uuid, file=sys.stderr)
         log.write('Save json file ' + team_id+'_' + uuid, uuid)
-   
+
     with open('./user_data/submissions/' + team_id+'_' + uuid, 'w') as outfile:
         json.dump(([{'uuid': uuid}] + user_dict[uuid]), outfile)
 
@@ -170,9 +188,10 @@ def generate():
 
     return response
 
+
 @app.route('/get_log')
 def get_log():
-    log = open('./log.txt', 'r');
+    log = open('./log.txt', 'r')
 
     if(debug >= 1):
         print('Download log', file=sys.stderr)
@@ -183,6 +202,7 @@ def get_log():
         as_attachment=True,
         attachment_filename='log.txt'
     )
+
 
 @app.route('/get_data')
 def download():
@@ -207,6 +227,7 @@ def download():
         attachment_filename=filename
     )
 
+
 @app.route('/clear_data')
 def clear():
     base_path = './user_data/'
@@ -216,13 +237,14 @@ def clear():
         log.write('ATTENTION!!! CLEARING ALL DATA!!!')
 
     for root, dirs, files in os.walk(base_path):
-            for file in files:
-                try:
-                    if os.path.isfile(os.path.join(root, file)):
-                        os.unlink(os.path.join(root, file))
-                except Exception as e:
-                    print(e)
+        for file in files:
+            try:
+                if os.path.isfile(os.path.join(root, file)):
+                    os.unlink(os.path.join(root, file))
+            except Exception as e:
+                print(e)
     return ('Cleared Data', 204)
+
 
 if __name__ == "__main__":
     app.run()

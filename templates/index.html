@@ -54,6 +54,8 @@
         var uuid = 0;
         var team_id = 0;
 
+        var performance_questions = ["How would I assess my team's efficiency?", "How would I assess my team's quality?", "How would I assess my team's performance?"]
+
         function changed_team_name() 
         {
             team_id = document.getElementById("team_number").value;
@@ -227,6 +229,38 @@
             });
         }
 
+        function send_performance()
+        {
+            var ems = document.getElementById("form1").elements;
+            var likert_dict = [];
+
+            likert_dict.push({'uuid': user_id})
+        
+            for(var i=0, mx=ems.length;i<mx;i++){
+                if(ems[i].checked){
+                    performance_question_id = Number(ems[i].name.replace('p',''));
+                    likert_dict.push({'name': ems[i].name,
+                                       'value': ems[i].value,
+                                       'performance_question_id': performance_question_id})
+                    ems[i].checked = false;
+                }		
+            }
+
+            $.ajax({
+                url: '/performance',
+                data: JSON.stringify(likert_dict),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
         function validate_team_id() {
             if(team_id == 0) {
                 return false;
@@ -318,11 +352,52 @@
 
             // last statement, change button name
             if(iterator == 0) {
+            }
+
+            // performance question
+            if(iterator == -1) {
+                debugger;
                 document.getElementById("submit").value = 'Submit';
+                document.getElementById("current_statement").innerHTML = '';
+
+                likert_scales = new Array();
+                // create new likert scales
+                for (likert_i = 0; likert_i < 3; likert_i ++) { 
+                    var id = 'p'+likert_i.toString();
+                    likert_scales[likert_i] = create_likert(id);
+                }
+                
+                for (likert_i = 0; likert_i < 3; likert_i ++) { 
+                    document.getElementById("form1").appendChild(likert_scales[likert_i]);
+                }
+                
+                for (likert_i = 0; likert_i < 3; likert_i ++) { 
+                    var id = 'p'+likert_i.toString();
+                    //statement_x is some likert scale x's statement_box
+                    document.getElementById("statement_"+id).innerHTML = performance_questions[likert_i];
+                }
+
+                likert_scales[0].children[1].innerHTML = 'Progress takes long';
+                likert_scales[0].children[2].innerHTML = 'Satisfied';
+                likert_scales[0].children[3].innerHTML = 'Very efficient';
+
+                likert_scales[1].children[1].innerHTML = 'Poor quality';
+                likert_scales[1].children[2].innerHTML = 'Ok quality';
+                likert_scales[1].children[3].innerHTML = 'High quality';
+
+                likert_scales[2].children[1].innerHTML = 'Not so good';
+                likert_scales[2].children[2].innerHTML = 'Did ok';
+                likert_scales[2].children[3].innerHTML = 'Did well';
+
+                iterator = iterator - 1;
+                return;
             }
 
             // last statement submitted, finish off
-            if(iterator == -1) {
+            if(iterator == -2) {
+                send_performance();
+
+                document.getElementById("form1").innerHTML = "";
                 document.getElementById("current_statement").innerHTML = '';
                 document.getElementById("finished").style.display = 'block';
                 document.getElementById("submit").style.display = 'none';
