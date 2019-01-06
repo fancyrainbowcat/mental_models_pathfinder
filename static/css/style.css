@@ -111,7 +111,7 @@ form {
 }
 
 .statement_box {
-  width: 750px;
+  width: 625px;
   margin-left: 50px;
   margin-top: 20px;
   font-size: 14px;
@@ -238,12 +238,30 @@ input #q0_0 {
   width: 100px;
 }
 
+#light_disagree {
+  display: inline-block;
+  font-family: Arial;
+  text-align: center;
+  font-size: 10px;
+  margin-left: 15px;
+  width: 100px;
+}
+
 #unrelated {
   display: inline-block;
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 75px;
+  margin-left: 15px;
+  width: 100px;
+}
+
+#light_agree {
+  display: inline-block;
+  font-family: Arial;
+  text-align: center;
+  font-size: 10px;
+  margin-left: 15px;
   width: 100px;
 }
 
@@ -252,7 +270,7 @@ input #q0_0 {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 75px;
+  margin-left: 15px;
   width: 100px;
 }
 

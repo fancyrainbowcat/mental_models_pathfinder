@@ -16,7 +16,7 @@
     <img id="logo_stanford" src="http://fallenleaffilms.com/wp-content/uploads/2016/12/Stanford-University-Logo.png">
     <h1>Measuring Team Mental Models</h1>
     <h2>Please select your team and indicate for each pair of statements how related they are to each other for you on a scale from <i>Highly negatively related</i> - <i>Highly positively related</i>.</h2>
-    <p> Highly <b>negatively</b> related means a high degree of one requires a low degree of the other (e.g. "The sun is shining" and "It's nighttime") <br> <b>Not related</b> at all (middle) means the statements have no connections with each other (e.g. "The sun is shining" and "Nutella contains chocolate") <br> Highly <b>positively</b> related means a high degree of one requires a high degree of the other (e.g. "The sun is shining" and "It's daytime")</p>
+    <p> <b>Highly <i>negatively</i> related</b> means a high degree of one requires a low degree of the other (e.g. "The sun is shining" and "It's nighttime") <br> <b><i>Not related</i> at all</b> (middle) means the statements have no connections with each other (e.g. "The sun is shining" and "Oreos are awesome") <br> <b>Highly <i>positively</i> related</b> means a high degree of one requires a high degree of the other (e.g. "The sun is shining" and "It's daytime") <br> <br> To shorten the statements, the abbreviation TM stands for Team Member</p>
 
     <p></p>
     <p id="team_sentence"> <b>Please select your team: </b>
@@ -54,7 +54,7 @@
         var uuid = 0;
         var team_id = 0;
 
-        var performance_questions = ["How efficient is my team?", "Of which quality is my team's work?", "If I had 10.000€, how much would I invest in my team and how much would I keep?"];
+        var performance_questions = ["How efficient is my team?", "Of which quality is my team's work?", "If someone gave you 10.000€ to either invest or keep to yourself, how much would you invest in your team?"];
 
         function changed_team_name() 
         {
@@ -69,9 +69,17 @@
             disagree.setAttribute('id', "disagree");
             disagree.innerHTML = "Highly negatively related";
 
+            var light_disagree = document.createElement("div");
+            light_disagree.setAttribute('id', "light_disagree");
+            light_disagree.innerHTML = "Negatively related";
+
             var unrelated = document.createElement("div");
             unrelated.setAttribute('id', "unrelated");
-            unrelated.innerHTML = "Not related";
+            unrelated.innerHTML = "Unrelated";
+
+            var light_agree = document.createElement("div");
+            light_agree.setAttribute('id', "light_agree");
+            light_agree.innerHTML = "Positively related";
 
             var agree = document.createElement("div");
             agree.setAttribute('id', "agree");
@@ -96,7 +104,7 @@
 
             likert.appendChild(statement_wrapper);
 
-            for(i = 0; i < 7; i++) {
+            for(i = 0; i < 9; i++) {
                 radio_groups[i] = document.createElement("div");
                 radio_groups[i].setAttribute('id', 'group'+id+'_'+i.toString());
                 radio_groups[i].setAttribute('class', "radio_group");
@@ -116,7 +124,7 @@
 
             statement_wrapper.appendChild(newline);
 
-            for(i = 0; i < 7; i++) {
+            for(i = 0; i < 9; i++) {
                 statement_wrapper.appendChild(radio_groups[i]);
                 radio_groups[i].appendChild(radio_buttons[i]);
                 radio_groups[i].appendChild(radio_labels[i]);
@@ -125,7 +133,9 @@
             statement_wrapper.appendChild(statement);
             likert.appendChild(newline);
             likert.appendChild(disagree);
+            likert.appendChild(light_disagree);
             likert.appendChild(unrelated);
+            likert.appendChild(light_agree);
             likert.appendChild(agree);
             likert.appendChild(newline);
             likert.appendChild(hline);
@@ -376,17 +386,23 @@
                     document.getElementById("statement_"+id).innerHTML = performance_questions[likert_i];
                 }
 
-                likert_scales[0].children[1].innerHTML = 'Highly inefficient, takes long to get things done';
+                likert_scales[0].children[1].innerHTML = 'Highly inefficient, takes very long to get things done';
                 likert_scales[0].children[2].innerHTML = '';
-                likert_scales[0].children[3].innerHTML = 'Highly efficient, gets things done as fast as possible';
+                likert_scales[0].children[3].innerHTML = '';
+                likert_scales[0].children[4].innerHTML = '';
+                likert_scales[0].children[5].innerHTML = 'Highly efficient, gets things done as fast as possible';
 
-                likert_scales[1].children[1].innerHTML = 'I am not proud of our work, tasks are done convenient rather than good';
+                likert_scales[1].children[1].innerHTML = 'I am not proud of our work, tasks are carried out convenient rather than good';
                 likert_scales[1].children[2].innerHTML = '';
-                likert_scales[1].children[3].innerHTML = 'I am proud of our work, tasks are done in the best possibel way';
+                likert_scales[1].children[3].innerHTML = '';
+                likert_scales[1].children[4].innerHTML = '';
+                likert_scales[1].children[5].innerHTML = 'I am proud of our work, tasks are carried out in the best possible way';
 
                 likert_scales[2].children[1].innerHTML = '0€';
-                likert_scales[2].children[2].innerHTML = '5.000€';
-                likert_scales[2].children[3].innerHTML = '10.000€';
+                likert_scales[2].children[2].innerHTML = '2.500€';
+                likert_scales[2].children[3].innerHTML = '5.000€';
+                likert_scales[2].children[4].innerHTML = '7.500€';
+                likert_scales[2].children[5].innerHTML = '10.000€';
 
                 iterator = iterator - 1;
                 return;
