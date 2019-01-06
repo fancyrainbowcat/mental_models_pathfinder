@@ -214,7 +214,7 @@ input score {
 }
 
 .radio_group [id^="q"][id$="_4"] + label {
-  background: #cacaca;
+  background: #ffffff;
 }
 
 .radio_group [id^="q"][id$="_5"] + label {
