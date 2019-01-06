@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-color: #ececec;
+  background-color: #f1f1f1;
 }
 
 #header {
@@ -163,13 +163,13 @@ input score {
   background: rgb(255, 255, 255);
   color: rgb(155, 155, 155);
   border-radius: 20px;
-  border: 2px solid #ffffff;
+  border: 1px solid #ffffff;
 }
 
 .radio_group input[type="radio"]:hover + label {
   /* style for the checked/selected state */
   background: #f7fbff;
-  border: 2px solid #b9b9b9;
+  border: 1px solid #b9b9b9;
   color: #e2e2e2;
 }
 
