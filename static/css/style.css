@@ -185,6 +185,7 @@ input score {
   float: left;
   margin-left: 25px;
   margin-bottom: 20px;
+  width: 29px;
 }
 
 .radio_group label {
