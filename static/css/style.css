@@ -175,8 +175,8 @@ input score {
 
 .radio_group input[type="radio"]:checked + label {
   /* style for the checked/selected state */
-  background: rgb(199, 199, 199);
-  border: 2px solid #7e7e7e;
+  background: rgb(209, 209, 209);
+  border: 1px solid #969696;
   color: #ffffff;
 }
 
@@ -247,7 +247,7 @@ input score {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 11px;
+  margin-left: 5px;
   width: 100px;
 }
 
@@ -256,7 +256,7 @@ input score {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 11px;
+  margin-left: 5px;
   width: 100px;
 }
 
@@ -265,7 +265,7 @@ input score {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 11px;
+  margin-left: 5px;
   width: 100px;
 }
 
@@ -274,7 +274,7 @@ input score {
   font-family: Arial;
   text-align: center;
   font-size: 10px;
-  margin-left: 11px;
+  margin-left: 5px;
   width: 100px;
 }
 
