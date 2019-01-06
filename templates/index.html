@@ -48,7 +48,7 @@
     </div>
 
     <script>
-        var statements = ["Team members work well together","Team members often disagree with each other on issues faced by the team","Team members trust each other","Team members communicate openly with each other", "Team members agree on decisions made in the team","Team members accept decisions made by the leader","Team members interact with one another outside official settings","Team members back each other up in carrying out team tasks","Team members are similar to each other (e.g. personality, temperament, and abilities","Team members are aware of other team members' abilities","Team members are aware of other team members' personal backgrounds (e.g. family background, hobbies and habits)","Team members know other team members' family members","Team members treat each other as friends","The team is highly effective","Team members communicate frequently with each other at formal occasions (e.g. team meetings","Team members communicate frequently with each other at informal occasions (e.g. in the hallways)"];
+        var statements = ["TMs work well together","TMs often disagree with each other on issues faced by the team","TMs trust each other","TMs communicate openly with each other", "TMs agree on decisions made in the team","TMs accept decisions made by the leader","TMs interact with one another outside official settings","TMs back each other up in carrying out team tasks","TMs are similar to each other (e.g. personality, temperament, and abilities","TMs are aware of other TMs' abilities","TMs are aware of other TMs' personal backgrounds (e.g. family background, hobbies and habits)","TMs know other TMs' family members","TMs treat each other as friends","The team is highly effective","TMs communicate frequently with each other at formal occasions (e.g. team meetings)","TMs communicate frequently with each other at informal occasions (e.g. in the hallways)"];
         var iterator = statements.length - 1;
         var list = "";
         var uuid = 0;
@@ -356,7 +356,6 @@
 
             // performance question
             if(iterator == -1) {
-                debugger;
                 document.getElementById("submit").value = 'Submit';
                 document.getElementById("current_statement").innerHTML = '';
 
