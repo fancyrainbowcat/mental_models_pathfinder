@@ -54,7 +54,7 @@
         var uuid = 0;
         var team_id = 0;
 
-        var performance_questions = ["How would I assess my team's efficiency?", "How would I assess my team's quality?", "How would I assess my team's performance?"]
+        var performance_questions = ["How efficient is my team?", "Of which quality is my team's work?", "If I had 10.000€, how much would I invest in my team and how much would I keep?"];
 
         function changed_team_name() 
         {
@@ -65,15 +65,15 @@
             var likert = document.createElement("span");
             likert.setAttribute('class',"answers");
 
-            var disagree = document.createElement("span");
+            var disagree = document.createElement("div");
             disagree.setAttribute('id', "disagree");
             disagree.innerHTML = "Highly negatively related";
 
-            var unrelated = document.createElement("span");
+            var unrelated = document.createElement("div");
             unrelated.setAttribute('id', "unrelated");
             unrelated.innerHTML = "Not related";
 
-            var agree = document.createElement("span");
+            var agree = document.createElement("div");
             agree.setAttribute('id', "agree");
             agree.innerHTML = "Highly positively related";
 
@@ -376,17 +376,17 @@
                     document.getElementById("statement_"+id).innerHTML = performance_questions[likert_i];
                 }
 
-                likert_scales[0].children[1].innerHTML = 'Progress takes long';
-                likert_scales[0].children[2].innerHTML = 'Satisfied';
-                likert_scales[0].children[3].innerHTML = 'Very efficient';
+                likert_scales[0].children[1].innerHTML = 'Highly inefficient, takes long to get things done';
+                likert_scales[0].children[2].innerHTML = '';
+                likert_scales[0].children[3].innerHTML = 'Highly efficient, gets things done as fast as possible';
 
-                likert_scales[1].children[1].innerHTML = 'Poor quality';
-                likert_scales[1].children[2].innerHTML = 'Ok quality';
-                likert_scales[1].children[3].innerHTML = 'High quality';
+                likert_scales[1].children[1].innerHTML = 'I am not proud of our work, tasks are done convenient rather than good';
+                likert_scales[1].children[2].innerHTML = '';
+                likert_scales[1].children[3].innerHTML = 'I am proud of our work, tasks are done in the best possibel way';
 
-                likert_scales[2].children[1].innerHTML = 'Not so good';
-                likert_scales[2].children[2].innerHTML = 'Did ok';
-                likert_scales[2].children[3].innerHTML = 'Did well';
+                likert_scales[2].children[1].innerHTML = '0€';
+                likert_scales[2].children[2].innerHTML = '5.000€';
+                likert_scales[2].children[3].innerHTML = '10.000€';
 
                 iterator = iterator - 1;
                 return;

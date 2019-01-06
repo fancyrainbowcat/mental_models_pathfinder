@@ -74,7 +74,7 @@ form {
   position: fixed;
   display: relative;
   font-size: 16px;
-  top: 50%;
+  top: 65%;
   width: 20%;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
@@ -230,21 +230,30 @@ input #q0_0 {
 }
 
 #disagree {
-  margin-top: 60px;
+  display: inline-block;
+  margin-top: 10px;
   font-family: Arial;
+  text-align: center;
   font-size: 10px;
+  width: 100px;
 }
 
 #unrelated {
+  display: inline-block;
   font-family: Arial;
+  text-align: center;
   font-size: 10px;
-  margin-left: 90px;
+  margin-left: 75px;
+  width: 100px;
 }
 
 #agree {
+  display: inline-block;
   font-family: Arial;
+  text-align: center;
   font-size: 10px;
-  margin-left: 90px;
+  margin-left: 75px;
+  width: 100px;
 }
 
 input[type="button"],
