@@ -219,19 +219,19 @@ input score {
 }
 
 .radio_group [id^="q"][id$="_5"] + label {
-  background: #eeffe6;
+  background: #e5f8dc;
 }
 
 .radio_group [id^="q"][id$="_6"] + label {
-  background: #ddffd0;
+  background: #dbffcc;
 }
 
 .radio_group [id^="q"][id$="_7"] + label {
-  background: #cfffc0;
+  background: #cdffbe;
 }
 
 .radio_group [id^="q"][id$="_8"] + label {
-  background: #beffab;
+  background: #bcffa7;
 }
 
 #disagree {
